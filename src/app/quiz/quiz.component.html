@@ -1,1 +1,14 @@
-<p>quiz works!</p>
+<div class="quiz-container">
+    <app-question 
+      *ngIf="!isQuizCompleted" 
+      [question]="currentQuestion" 
+      (answerSelected)="onAnswerSelected($event)">
+    </app-question>
+    <app-result 
+      *ngIf="isQuizCompleted" 
+      [score]="score" 
+      [totalQuestions]="questions.length" 
+      (restartQuiz)="restartQuiz()">
+    </app-result>
+  </div>
+  
