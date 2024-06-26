@@ -1,14 +1,27 @@
+// tsconfig.json
 {
-  "extends": "../tsconfig.json",
+  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "types": []
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   },
   "files": [
-    "main.ts",
-    "polyfills.ts"
+    "src/main.ts",
+    "src/polyfills.ts"
   ],
   "include": [
-    "**/*.d.ts"
+    "src/**/*.d.ts"
   ]
 }
