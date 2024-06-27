@@ -11,10 +11,10 @@ import { Question } from './question.model';
 export class QuizComponent implements OnInit {
   questions: Question[] = [];
   currentQuestionIndex: number = 0;
-  currentQuestion: Question;
+  currentQuestion: Question | undefined;
   score: number = 0;
   isQuizCompleted: boolean = false;
-  totalQuestions: number = 15;  // Set total questions to 15
+  totalQuestions: number = 15;
 
   constructor(private http: HttpClient) {}
 
@@ -23,21 +23,30 @@ export class QuizComponent implements OnInit {
   }
 
   fetchQuestions() {
-    const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&difficulty=easy&type=multiple';  // API URL for programming questions
+    const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&type=multiple';
+    console.log('Fetching questions from API:', apiUrl);
     this.http.get<any>(apiUrl).subscribe(response => {
-      this.questions = response.results.map(item => {
-        return {
-          questionText: item.question,
-          options: [...item.incorrect_answers, item.correct_answer].sort(() => Math.random() - 0.5),
-          correctAnswer: item.correct_answer
-        };
-      });
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
+      console.log('API response:', response);
+      if (response.results) {
+        this.questions = response.results.map(item => {
+          return {
+            questionText: item.question,
+            options: [...item.incorrect_answers, item.correct_answer].sort(() => Math.random() - 0.5),
+            correctAnswer: item.correct_answer
+          };
+        });
+        this.currentQuestion = this.questions[this.currentQuestionIndex];
+        console.log('Questions fetched:', this.questions);
+      } else {
+        console.error('No results in the API response:', response);
+      }
+    }, error => {
+      console.error('Error fetching questions:', error);
     });
   }
 
   onAnswerSelected(answer: string) {
-    if (answer === this.currentQuestion.correctAnswer) {
+    if (this.currentQuestion && answer === this.currentQuestion.correctAnswer) {
       this.score++;
     }
     this.currentQuestionIndex++;
@@ -52,6 +61,6 @@ export class QuizComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.score = 0;
     this.isQuizCompleted = false;
-    this.fetchQuestions();  // Re-fetch questions
+    this.fetchQuestions();
   }
 }

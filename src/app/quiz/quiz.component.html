@@ -1,14 +1,10 @@
-<div class="quiz-container">
-    <app-question 
-      *ngIf="!isQuizCompleted" 
-      [question]="currentQuestion" 
-      (answerSelected)="onAnswerSelected($event)">
-    </app-question>
-    <app-result 
-      *ngIf="isQuizCompleted" 
-      [score]="score" 
-      [totalQuestions]="questions.length" 
-      (restartQuiz)="restartQuiz()">
-    </app-result>
-  </div>
-  
+<!-- src/app/quiz/quiz.component.html -->
+<div *ngIf="currentQuestion; else loading">
+  <app-question [question]="currentQuestion" (answerSelected)="onAnswerSelected($event)"></app-question>
+</div>
+
+<ng-template #loading>
+  <p>Loading questions...</p>
+</ng-template>
+
+<app-result *ngIf="isQuizCompleted" [score]="score" [totalQuestions]="totalQuestions" (restartQuiz)="restartQuiz()"></app-result>
