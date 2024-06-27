@@ -23,7 +23,7 @@ export class QuizComponent implements OnInit {
   }
 
   fetchQuestions() {
-    const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&type=multiple';  // API URL for programming questions
+    const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&difficulty=easy&type=multiple';  // API URL for programming questions
     this.http.get<any>(apiUrl).subscribe(response => {
       this.questions = response.results.map(item => {
         return {
