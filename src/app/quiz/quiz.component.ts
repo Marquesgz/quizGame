@@ -1,5 +1,6 @@
 // src/app/quiz/quiz.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Question } from './question.model';
 
 @Component({
@@ -7,28 +8,33 @@ import { Question } from './question.model';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent {
-  questions: Question[] = [
-    {
-      questionText: 'What is the capital of France?',
-      options: ['Paris', 'London', 'Berlin', 'Madrid'],
-      correctAnswer: 'Paris'
-    },
-    {
-      questionText: 'What is 2 + 2?',
-      options: ['3', '4', '5', '6'],
-      correctAnswer: '4'
-    },
-    {
-      questionText: 'Who wrote "Hamlet"?',
-      options: ['Charles Dickens', 'J.K. Rowling', 'William Shakespeare', 'Ernest Hemingway'],
-      correctAnswer: 'William Shakespeare'
-    }
-  ];
+export class QuizComponent implements OnInit {
+  questions: Question[] = [];
   currentQuestionIndex: number = 0;
-  currentQuestion: Question = this.questions[this.currentQuestionIndex];
+  currentQuestion: Question;
   score: number = 0;
   isQuizCompleted: boolean = false;
+  totalQuestions: number = 15;  // Set total questions to 15
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.fetchQuestions();
+  }
+
+  fetchQuestions() {
+    const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&type=multiple';  // API URL for programming questions
+    this.http.get<any>(apiUrl).subscribe(response => {
+      this.questions = response.results.map(item => {
+        return {
+          questionText: item.question,
+          options: [...item.incorrect_answers, item.correct_answer].sort(() => Math.random() - 0.5),
+          correctAnswer: item.correct_answer
+        };
+      });
+      this.currentQuestion = this.questions[this.currentQuestionIndex];
+    });
+  }
 
   onAnswerSelected(answer: string) {
     if (answer === this.currentQuestion.correctAnswer) {
@@ -44,8 +50,8 @@ export class QuizComponent {
 
   restartQuiz() {
     this.currentQuestionIndex = 0;
-    this.currentQuestion = this.questions[this.currentQuestionIndex];
     this.score = 0;
     this.isQuizCompleted = false;
+    this.fetchQuestions();  // Re-fetch questions
   }
 }

@@ -1,3 +1,4 @@
+// src/app/quiz/result/result.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
