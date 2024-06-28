@@ -1,6 +1,10 @@
 <!-- src/app/app.component.html -->
 <div class="app-container">
-    <h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>
+  <ng-container *ngIf="!isQuizStarted; else quizTemplate">
+    <app-home (startQuiz)="startQuiz()"></app-home>
+  </ng-container>
+  <ng-template #quizTemplate>
     <app-quiz></app-quiz>
-  </div>
-  
+  </ng-template>
+</div>

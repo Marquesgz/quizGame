@@ -15,6 +15,7 @@ export class QuizComponent implements OnInit {
   score: number = 0;
   isQuizCompleted: boolean = false;
   totalQuestions: number = 15;
+  isLoading: boolean = true; // Add loading state
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +24,7 @@ export class QuizComponent implements OnInit {
   }
 
   fetchQuestions() {
+    this.isLoading = true; // Set loading to true when fetching
     const apiUrl = 'https://opentdb.com/api.php?amount=15&category=18&type=multiple';
     console.log('Fetching questions from API:', apiUrl);
     this.http.get<any>(apiUrl).subscribe(response => {
@@ -37,11 +39,14 @@ export class QuizComponent implements OnInit {
         });
         this.currentQuestion = this.questions[this.currentQuestionIndex];
         console.log('Questions fetched:', this.questions);
+        this.isLoading = false; // Set loading to false after fetching
       } else {
         console.error('No results in the API response:', response);
+        this.isLoading = false; // Set loading to false even if no results
       }
     }, error => {
       console.error('Error fetching questions:', error);
+      this.isLoading = false; // Set loading to false on error
     });
   }
 

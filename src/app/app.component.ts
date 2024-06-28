@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'quiz-app';
+  title = 'Who Wants to Be a Programmer';
+  isQuizStarted = false;
+
+  startQuiz() {
+    this.isQuizStarted = true;
+  }
 }
