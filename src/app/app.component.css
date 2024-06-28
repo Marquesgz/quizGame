@@ -1,11 +1,10 @@
 /* src/app/app.component.css */
 .app-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #333;
-  }
-  
+  text-align: center;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
