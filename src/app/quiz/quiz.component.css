@@ -1,11 +1,13 @@
 /* src/app/quiz/quiz.component.css */
 .quiz-container {
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #04002f;
+  color: white;
 }
 
 

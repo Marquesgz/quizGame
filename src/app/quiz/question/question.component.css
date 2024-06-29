@@ -1,5 +1,11 @@
 /* src/app/quiz/question/question.component.css */
 .question-container {
+  text-align: center;
+  background-color: #04002f;
+  color: white;
+}
+
+.question-container {
   margin: 20px;
 }
 
