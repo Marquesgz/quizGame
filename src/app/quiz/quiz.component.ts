@@ -14,6 +14,7 @@ export class QuizComponent implements OnInit {
   currentQuestion: Question | undefined;
   score: number = 0;
   isQuizCompleted: boolean = false;
+  hasLost: boolean = false; // Add this line
   totalQuestions: number = 15;
   isLoading: boolean = true; // Add loading state
 
@@ -53,11 +54,14 @@ export class QuizComponent implements OnInit {
   onAnswerSelected(answer: string) {
     if (this.currentQuestion && answer === this.currentQuestion.correctAnswer) {
       this.score++;
-    }
-    this.currentQuestionIndex++;
-    if (this.currentQuestionIndex < this.questions.length) {
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
+      this.currentQuestionIndex++;
+      if (this.currentQuestionIndex < this.questions.length) {
+        this.currentQuestion = this.questions[this.currentQuestionIndex];
+      } else {
+        this.isQuizCompleted = true;
+      }
     } else {
+      this.hasLost = true; // Add this line
       this.isQuizCompleted = true;
     }
   }
@@ -66,6 +70,7 @@ export class QuizComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.score = 0;
     this.isQuizCompleted = false;
+    this.hasLost = false; // Add this line
     this.fetchQuestions();
   }
 }
