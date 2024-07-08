@@ -1,4 +1,3 @@
-/* src/app/quiz/quiz.component.css */
 .quiz-container {
   width: 100%;
   height: 100%;
@@ -11,7 +10,6 @@
 }
 
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .quiz-container {
     width: 90%;

@@ -1,4 +1,3 @@
-// src/app/quiz/question/question.component.ts
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Question } from '../question.model';
 
@@ -14,7 +13,7 @@ export class QuestionComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.question && !changes.question.firstChange) {
-      this.selectedAnswer = null; // Clear the selected answer when the question changes
+      this.selectedAnswer = null; 
     }
   }
 

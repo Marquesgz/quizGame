@@ -1,4 +1,3 @@
-// src/app/quiz/result/result.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ResultComponent {
   @Input() score: number;
   @Input() totalQuestions: number;
-  @Input() hasLost: boolean; // Add this line
+  @Input() hasLost: boolean; 
   @Output() restartQuiz = new EventEmitter<void>();
 
   restart() {

@@ -1,37 +1,36 @@
 .home-container {
-  position: relative; /* Positioning context for absolute elements */
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Hide overflowing content */
+  position: relative;
+  width: 100vw; 
+  height: 100vh; 
+  overflow: hidden; 
 }
 
-/* Video styles */
+
 .home-container video {
-  position: absolute; /* Position absolute to cover entire container */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  min-width: 100%; /* Minimum width to cover entire viewport */
-  min-height: 100%; /* Minimum height to cover entire viewport */
-  transform: translate(-50%, -50%); /* Center the video */
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  min-width: 100%; 
+  min-height: 100%; 
+  transform: translate(-50%, -50%); 
 }
 
-/* Button styles */
+
 .home-container button {
-  position: absolute; /* Position absolute for fixed placement */
-  bottom: 85px; /* Distance from bottom */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center the button horizontally */
-  padding: 12px 24px; /* Button padding */
-  font-size: 1rem; /* Button text size */
-  color: white; /* Text color */
-  background-color: #1a146e; /* Button background color */
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.3s ease; /* Smooth background transition */
+  position: absolute;
+  bottom: 85px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  padding: 12px 24px; 
+  font-size: 1rem; 
+  color: white; 
+  background-color: #1a146e; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
 }
 
-/* Hover effect for button */
 .home-container button:hover {
-  background-color: #04002f; /* Darker background on hover */
+  background-color: #04002f; 
 }
